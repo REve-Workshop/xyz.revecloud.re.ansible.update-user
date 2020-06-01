@@ -1,0 +1,30 @@
+- name: Deploy .zshrc
+  copy:
+    src: zsh-config/zshrc
+    dest: .zshrc
+    remote_src: 'yes'
+- name: Ensure the zsh configuration directory is present
+  file:
+    path: .config/zsh
+    state: directory
+- name: Ensure the zsh configuration sub-directories are present
+  file:
+    path: .config/zsh/conf.d
+    state: directory
+- name: Deploy configuration files
+  block
+    - name: Deploy antigen configuration
+      copy:
+        src: zsh-config/antigenrc
+        dest: .config/zsh/antigenrc
+        remote_src: yes
+    - name: Deploy other configuration files
+      copy:
+        src: "zsh-config/conf.d/{{ item }}"
+        dest: ".config/zsh/{{ item }}"
+        remote_src: yes
+      loop:
+        - 001-init.zsh
+        - 010-aliases.zsh
+        - 020-reve-env.zsh
+        - 999-close.zsh

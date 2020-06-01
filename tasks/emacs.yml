@@ -1,7 +1,14 @@
 - name: Deploy root configuration file of Emacs in user's home directory
   copy:
-    src: "{{ root_config_repo }}/{{ config_emacs.dir }}/{{ item }}"
+    src: emacs-config/.emacs
     dest: ~/.emacs
     remote_src: 'yes'
-  with_items:
-    - .emacs
+- name: Ensure the configuration directory of Emacs exists
+  file:
+    path: .config/emacs
+    state: directory
+- name: Deploy Emacs configuration in .config/emacs
+  copy:
+    src: emacs-config/init.emacs.org
+    dest: ~/.config/init.emacs.org
+    remote_src: 'yes'
