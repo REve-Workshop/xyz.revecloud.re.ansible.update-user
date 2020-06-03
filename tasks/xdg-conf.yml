@@ -2,13 +2,13 @@
     var: user_conf
 - debug:
     var: user_conf.value.xdgdir
-- name: "Ensure directory {{ xdg_config_home }}/{{ user_conf.xdgdir }} exists"
+- name: "Ensure directory {{ xdg_config_home }}/{{ user_conf.value.xdgdir }} exists"
   file:
-    path: "{{ xdg_config_home }}/{{ user_conf.xdgdir }}"
+    path: "{{ xdg_config_home }}/{{ user_conf.value.xdgdir }}"
     state: directory
 - name: Deploy configuration
   copy:
-    src: "{{ user_conf.dir }}"
-    dest: "{{ xdg_config_home }}/{{ user_conf.xdgdir }}"
+    src: "{{ user_conf.value.dir }}"
+    dest: "{{ xdg_config_home }}/{{ user_conf.value.xdgdir }}"
     remote_src: 'yes'
-  when: user_conf.config
+  when: user_conf.value.config
