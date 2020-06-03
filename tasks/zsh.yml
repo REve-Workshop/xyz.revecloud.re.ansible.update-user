@@ -26,7 +26,7 @@
     - name: Deploy other configuration files
       copy:
         src: "zsh-config/conf.d/{{ item }}"
-        dest: "~/.config/zsh/{{ item }}"
+        dest: "~/.config/zsh/conf.d/{{ item }}"
         remote_src: yes
       loop:
         - 001-init.zsh
