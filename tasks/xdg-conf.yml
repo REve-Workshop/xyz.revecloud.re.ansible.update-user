@@ -1,10 +1,10 @@
-- name: "Ensure directory {{ xdg_config_home }}/{{ user_conf['xdgdir'] }} exists"
+- name: "Ensure directory {{ xdg_config_home }}/{{ user_conf.xdgdir }} exists"
   file:
-    path: "{{ xdg_config_home }}/{{ user_conf['xdgdir'] }}"
+    path: "{{ xdg_config_home }}/{{ user_conf.xdgdir }}"
     state: directory
 - name: Deploy configuration
   copy:
-    src: "{{ user_conf['dir'] }}"
-    dest: "{{ xdg_config_home }}/{{ user_conf['xdgdir'] }}"
+    src: "{{ user_conf.dir }}"
+    dest: "{{ xdg_config_home }}/{{ user_conf.xdgdir }}"
     remote_src: 'yes'
-  when: user_conf['config']
+  when: user_conf.config

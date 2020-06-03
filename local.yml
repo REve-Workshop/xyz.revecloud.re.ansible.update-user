@@ -16,8 +16,8 @@
       when: user_data.zsh
     - include: tasks/emacs.yml
       when: user_data.emacs
-    - name: Update configuration repositories and deploy XDG compliant configuration elements
-      include: tasks/xdg-conf.yml
+    - name: Deploy XDG compliant configuration elements
+      include_tasks: tasks/xdg-conf.yml
       loop: "{{ user_data['configurations']|dict2items }}"
       loop_control:
         loop_var: user_conf
