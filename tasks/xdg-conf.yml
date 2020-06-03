@@ -1,7 +1,3 @@
-- debug:
-    var: user_conf
-- debug:
-    var: user_conf.value.xdgdir
 - name: "Ensure directory {{ xdg_config_home }}/{{ user_conf.value.xdgdir }} exists"
   file:
     path: "{{ xdg_config_home }}/{{ user_conf.value.xdgdir }}"
