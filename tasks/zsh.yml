@@ -12,7 +12,7 @@
     path: .config/zsh/conf.d
     state: directory
 - name: Deploy configuration files
-  block
+  block:
     - name: Deploy antigen configuration
       copy:
         src: zsh-config/antigenrc

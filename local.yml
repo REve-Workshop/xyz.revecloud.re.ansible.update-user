@@ -1,26 +1,23 @@
 ---
 - hosts: localhost
   gather_facts: False
+  vars:
+    xdg_config_home: "~/.config"
   tasks:
     - name: Load user description data
       include_vars:
         file: "{{ users_dir }}/{{ target_user }}.yml"
         name: user_data
-    - name: Configure git environment for the user
-      include_role:
-        name: manage-user
-        tasks_from: git.yml
-    - name: "Install Python dependencies"
-      include_role:
-        name: python
+    - include: tasks/git.yml
+    - include: tasks/python.yml
+    - include: tasks/tmux.yml
+      when user_data.tmux
+    - include: tasks/zsh.yml
+      when: user_data.zsh
+    - include: tasks/emacs.yml
+      when: user_data.emacs
     - name: Update configuration repositories and deploy XDG compliant configuration elements
-      include_role:
-        name: manage-user
-        tasks_from: xdg-conf.yml
+      include: tasks/xdg-conf.yml
       loop: "{{ user_data['configurations']|dict2items }}"
       loop_control:
         loop_var: user_conf
-    - name: Deploy non XDG compliant configuration elements
-      include_role:
-        name: manage-user
-        tasks_from: non-xdg-conf.yml

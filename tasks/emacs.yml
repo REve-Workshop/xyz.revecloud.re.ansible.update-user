@@ -1,14 +1,14 @@
+- name: "Ensure directory {{ xdg_config_home }}/emacs exists"
+  file:
+    path: "{{ xdg_config_home }}/emacs"
+    state: directory
 - name: Deploy root configuration file of Emacs in user's home directory
   copy:
-    src: emacs-config/.emacs
+    src: reve-emacs-config/.emacs
     dest: ~/.emacs
     remote_src: 'yes'
-- name: Ensure the configuration directory of Emacs exists
-  file:
-    path: .config/emacs
-    state: directory
 - name: Deploy Emacs configuration in .config/emacs
   copy:
-    src: emacs-config/init.emacs.org
-    dest: ~/.config/init.emacs.org
+    src: reve-emacs-config/init.emacs.org
+    dest: "{{ xdg_config_home }}/init.emacs.org"
     remote_src: 'yes'

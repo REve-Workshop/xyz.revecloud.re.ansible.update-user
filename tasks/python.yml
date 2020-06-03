@@ -1,9 +1,17 @@
-- name: "Install pipenv for {{ user_data.name }}"
+- name: "Install pipenv"
   pip:
     name: pipenv
     executable: 'pip-3'
     extra_args: "--user"
     state: latest
-  become: yes
-  become_user: "{{ user_data['name'] }}"
-  when: user_data['state'] != "None"
+
+- name: Installing packages for developers
+  pip:
+    name: "{{ item }}"
+    executable: 'pip-3'
+    extra_args: "--user"
+    state: latest
+  loop:
+    - ansible-generator
+    - ansible-lint
+  when: user_data.dev_profile
