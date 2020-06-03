@@ -1,12 +1,12 @@
-[submodule "reve-emacs-config"]
-	path = reve-emacs-config
-	url = git@github.com:montaropdf/reve-emacs-config.git
 [submodule "zsh-config"]
 	path = zsh-config
-	url = git@github.com:montaropdf/zsh-config.git
+	url = https://github.com/montaropdf/zsh-config.git
 [submodule "alacritty-config"]
 	path = alacritty-config
-	url = git@github.com:montaropdf/alacritty-config.git
+	url = https://github.com/montaropdf/alacritty-config.git
+[submodule "reve-emacs-config"]
+	path = reve-emacs-config
+	url = https://github.com/montaropdf/reve-emacs-config.git
 [submodule "stumpwm-config"]
 	path = stumpwm-config
-	url = git@github.com:montaropdf/stumpwm-config.git
+	url = https://github.com/montaropdf/stumpwm-config.git
