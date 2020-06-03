@@ -14,4 +14,4 @@
   loop:
     - ansible-generator
     - ansible-lint
-  when: user_data.dev_profile
+  when: "'development' in user_data.profiles"
