@@ -10,5 +10,5 @@
 - name: Deploy Emacs configuration in .config/emacs
   copy:
     src: reve-emacs-config/init.emacs.org
-    dest: "{{ xdg_config_home }}/init.emacs.org"
+    dest: "{{ xdg_config_home }}/emacs/init.emacs.org"
     remote_src: 'yes'
